@@ -6,12 +6,12 @@ module.exports = (mongoose) => {
       published: Boolean,
     },
     { timestamps: true }
-  );
+  )
   schema.method("toJSON", function () {
-    const { _v, _id, ...object } = this.toObject();
-    object.id = _id;
-    return object;
-  });
-  const Post = mongoose.module("posts", schema);
-  return Post;
-};
+    const { _v, _id, ...object } = this.toObject()
+    object.id = _id
+    return object
+  })
+  const Post = mongoose.module("posts", schema)
+  return Post
+}

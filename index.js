@@ -1,19 +1,33 @@
-const express = require("express");
-const cors = require("cors");
+const express = require("express")
+const cors = require("cors")
 
-const app = express();
+const app = express()
 
-app.use(express.json());
-app.use(express.urlencoded({ extended: true }));
+app.use(express.json())
+app.use(express.urlencoded({ extended: true }))
 
 app.get("/", (req, res) => {
   res.json({
     message: "Method get berhasil",
-  });
-});
+  })
+})
 
-const PORT = 8000;
+const db = require("./app/models/")
+db.mongoose
+  .connect(db.url, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+  })
+  .then(() => {
+    console.log(`Database telah terkoneksi`)
+  })
+  .catch((err) => {
+    console.log(`wah, tidak bisa terkoneksi!`, err)
+    process.exit()
+  })
+
+const PORT = 8000
 
 app.listen(PORT, () => {
-  console.log(`Server berjalan pada http://localhost:${PORT}`);
-});
+  console.log(`Server berjalan pada http://localhost:${PORT}`)
+})
