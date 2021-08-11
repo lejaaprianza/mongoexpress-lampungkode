@@ -26,6 +26,8 @@ db.mongoose
     process.exit()
   })
 
+require("./app/routes/post.routes")(app)
+
 const PORT = 8000
 
 app.listen(PORT, () => {
