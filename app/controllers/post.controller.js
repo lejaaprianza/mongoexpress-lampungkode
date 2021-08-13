@@ -66,3 +66,23 @@ exports.update = (req, res) => {
       })
     })
 }
+
+exports.delete = (req, res) => {
+  const id = req.params.id
+  Post.findByIdAndRemove(id)
+    .then((result) => {
+      if (!result) {
+        res.status(404).send({
+          message: "Post tidak ada",
+        })
+      }
+      res.send({
+        message: "Post telah dihapus",
+      })
+    })
+    .catch((err) => {
+      res.status(409).send({
+        message: err.message || "eror ketika menghapus data",
+      })
+    })
+}
