@@ -32,3 +32,17 @@ exports.create = (req, res) => {
       })
     })
 }
+
+exports.findOne = (req, res) => {
+  const id = req.params.id
+
+  Post.findById(id)
+    .then((result) => {
+      res.send(result)
+    })
+    .catch((err) => {
+      res.status(409).send({
+        message: err.message || "Error terjadi ketika mengambil data",
+      })
+    })
+}
