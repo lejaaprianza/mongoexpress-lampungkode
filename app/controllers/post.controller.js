@@ -46,3 +46,23 @@ exports.findOne = (req, res) => {
       })
     })
 }
+
+exports.update = (req, res) => {
+  const id = req.params.id
+  Post.findByIdAndUpdate(id, req.body)
+    .then((result) => {
+      if (!result) {
+        res.status(404).send({
+          message: "Post tidak ditemukan",
+        })
+      }
+      res.send({
+        message: "Post telah diupdate",
+      })
+    })
+    .catch((err) => {
+      res.status(409).send({
+        message: err.message || "eror ketika meng-update data",
+      })
+    })
+}
