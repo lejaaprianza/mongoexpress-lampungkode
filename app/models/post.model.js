@@ -12,6 +12,6 @@ module.exports = (mongoose) => {
     object.id = _id
     return object
   })
-  const Post = mongoose.module("posts", schema)
+  const Post = mongoose.model("posts", schema)
   return Post
 }
