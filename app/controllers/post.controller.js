@@ -13,3 +13,22 @@ exports.findAll = (req, res) => {
       })
     })
 }
+
+exports.create = (req, res) => {
+  const post = new Post({
+    title: req.body.title,
+    body: req.body.body,
+    published: req.body.published ? req.body.published : false,
+  })
+
+  post
+    .save(post)
+    .then((result) => {
+      res.send(result)
+    })
+    .catch((err) => {
+      res.status(409).send({
+        message: err.message || "Error saat membuat data post",
+      })
+    })
+}
